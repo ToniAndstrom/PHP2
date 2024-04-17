@@ -30,7 +30,7 @@ form{
     border-radius:100%;
     background-color:salmon;
     margin:1rem;
-    margin-top: 8rem;
+    margin-top: 0.5rem;
     padding:2rem;
     max-width: 30rem;
 }
@@ -58,5 +58,11 @@ button{
     min-height: 2rem;
     border-radius: 5px;
     border: solid hotpink;
+}
+.calculator{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 

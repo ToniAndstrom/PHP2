@@ -51,6 +51,8 @@ if (isset($_POST["submit"])) {
 
 <body>
     <div class="calculator">
+         <h2> MY PHP</h2><br>
+        <h1>CALCULATOR</h1><br>
         <form action="calculator.php" method="post">
             Number 1:<label for="number1"></label>
             <input type="number" name="number1" required>

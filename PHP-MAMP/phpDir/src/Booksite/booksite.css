@@ -55,12 +55,14 @@ h1{
 }
 table{
 background: black;
+
 }
 tr{
     background-color: darkcyan;
 }
 button{
     background-color: hotpink;
-    width: 4rem;
+    width: 8rem;
     height: 2rem;
+    margin:5px;
 }

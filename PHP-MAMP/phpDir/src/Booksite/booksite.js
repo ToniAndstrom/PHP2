@@ -5,64 +5,61 @@
  * @param {boolean} isEditing - A flag indicating whether to switch to edit mode.
  */
 function toggleEditMode(row, isEditing) {
-  // Retrieve the cells for username, password, and actions from the row
-  const titleCell = row.children[1];
-  const descriptionCell = row.children[2];
-  const authorCell = row.children[3];
-  const publishing_yearCell = row.children[4];
-  const genreCell = row.children[5];
-  const actionsCell = row.children[6];
+  const cells = row.getElementsByTagName('td');
+  const actionsCell = cells[cells.length - 1];
   const editButton = actionsCell.children[0];
-  const deleteButton = actionsCell.children[1];
+  const cancelButton = actionsCell.children[1];
 
   if (isEditing) {
-    // Switch to edit mode: display input fields
-    titleCell.innerHTML = `<input type="text" value="${titleCell.textContent}">`;
-    descriptionCell.innerHTML = `<input type="text" value="${descriptionCell.textContent}">`;
-    authorCell.innerHTML = `<input type="text" value="${authorCell.textContent}">`;
-    publishing_yearCell.innerHTML = `<input type="number" value="${publishing_yearCell.textContent}">`;
-    genreCell.innerHTML = ` <select value="${genreCell.select}">
-    <option value="Adventure">Adventure</option>
-    <option value="Classic Literature">Classic Literature</option>
-    <option value="Coming-of-age">Coming-of-age</option>
-    <option value="Fantasy">Fantasy</option>
-    <option value="Historical Fiction">Historical Fiction</option>
-    <option value="Horror">Horror</option>
-    <option value="Mystery">Mystery</option>
-    <option value="Romance">Romance</option>
-    <option value="Science Fiction">Science Fiction</option>
+    // Store the current content and switch to edit mode
+    for (let i = 1; i < cells.length - 1; i++) {
+      const cell = cells[i];
+      cell.setAttribute('data-original-content', cell.innerHTML);
+      if (cell === cells[5]) {
+        // genreCell
+        // Create a select element for genre
+        cell.innerHTML = `<select>
+        <option value="Adventure">Adventure</option>
+        <option value="Classic Literature">Classic Literature</option>
+        <option value="Coming-of-age">Coming-of-age</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Historical Fiction">Historical Fiction</option>
+        <option value="Horror">Horror</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Romance">Romance</option>
+        <option value="Science Fiction">Science Fiction</option>
   </select>`;
-
-    // Change button labels to 'Save' and 'Cancel'
-    editButton.textContent = "Save";
-    deleteButton.textContent = "Cancel";
-    // Set onclick handlers for saving changes and cancelling edit
-    deleteButton.setAttribute(
-      "onclick",
-      "toggleEditMode(this.parentNode.parentNode , false)"
-    );
-    editButton.setAttribute(
-      "onclick",
-      "submitEdit(this.parentNode.parentNode)"
-    );
+        // Set the correct selected option
+        cell.querySelector('select').value = cell.getAttribute(
+          'data-original-content'
+        );
+      } else {
+        // Create an input element for other cells
+        cell.innerHTML = `<input type="text" value="${cell.textContent.trim()}">`;
+      }
+    }
+    editButton.textContent = 'Save';
+    cancelButton.textContent = 'Cancel';
+    cancelButton.onclick = function () {
+      toggleEditMode(row, false);
+    };
+    editButton.onclick = function () {
+      submitEdit(row);
+    };
   } else {
-    // Revert to read mode: display text
-    titleCell.textContent = titleCell.querySelector("input").value;
-    descriptionCell.textContent = descriptionCell.querySelector("input").value;
-    authorCell.textContent = authorCell.querySelector("input").value;
-    publishing_yearCell.textContent =
-      publishing_yearCell.querySelector("input").value;
-    genreCell.textContent = genreCell.querySelector("input").value;
-    editButton.textContent = "Edit";
-    deleteButton.textContent = "Delete";
-    deleteButton.setAttribute(
-      "onclick",
-      `deleteRow(${row.getAttribute("data-id")})`
-    );
-    editButton.setAttribute(
-      "onclick",
-      "toggleEditMode(this.parentNode.parentNode, true)"
-    );
+    // Restore the original content if canceling
+    for (let i = 1; i < cells.length - 1; i++) {
+      const cell = cells[i];
+      cell.innerHTML = cell.getAttribute('data-original-content');
+    }
+    editButton.textContent = 'Edit';
+    cancelButton.textContent = 'Delete';
+    cancelButton.onclick = function () {
+      deleteRow(row.getAttribute('data-id'));
+    };
+    editButton.onclick = function () {
+      toggleEditMode(row, true);
+    };
   }
 }
 
@@ -72,8 +69,8 @@ function toggleEditMode(row, isEditing) {
  * @param {number} id - The ID of the user to delete.
  */
 function deleteRow(id) {
-  if (confirm("Are you sure you want to delete?")) {
-    const form = createForm("delete_id", id);
+  if (confirm('Are you sure you want to delete?')) {
+    const form = createForm('delete_id', id);
     document.body.appendChild(form);
     form.submit();
   }
@@ -85,19 +82,21 @@ function deleteRow(id) {
  * @param {HTMLElement} row - The table row element.
  */
 function submitEdit(row) {
-  const id = row.getAttribute("data-id");
-  const title = row.children[1].querySelector("input").value;
-  const description = row.children[2].querySelector("input").value;
-  const author = row.children[3].querySelector("input").value;
-  const publishing_year = row.children[4].querySelector("input").value;
-  const genre = row.children[5].querySelector("input").value;
+  const id = row.getAttribute('data-id');
+  const title = row.children[1].querySelector('input').value;
+  const description = row.children[2].querySelector('input').value;
+  const author = row.children[3].querySelector('input').value;
+  const publishing_year = row.children[4].querySelector('input').value;
+  // Correctly select the 'select' element and get the value of the selected option
+  const genreSelect = row.children[5].querySelector('select');
+  const genre = genreSelect.options[genreSelect.selectedIndex].value;
 
-  const form = createForm("edit_id", id);
-  form.appendChild(createInput("edit_title", title));
-  form.appendChild(createInput("edit_description", description));
-  form.appendChild(createInput("edit_author", author));
-  form.appendChild(createInput("edit_publishing_year", publishing_year));
-  form.appendChild(createInput("edit_genre", genre));
+  const form = createForm('edit_id', id);
+  form.appendChild(createInput('edit_title', title));
+  form.appendChild(createInput('edit_description', description));
+  form.appendChild(createInput('edit_author', author));
+  form.appendChild(createInput('edit_publishing_year', publishing_year));
+  form.appendChild(createInput('edit_genre', genre));
   document.body.appendChild(form);
   form.submit();
 }
@@ -110,9 +109,9 @@ function submitEdit(row) {
  * @returns {HTMLFormElement} The created form element.
  */
 function createForm(name, value) {
-  const form = document.createElement("form");
-  form.method = "post";
-  form.style.display = "none";
+  const form = document.createElement('form');
+  form.method = 'post';
+  form.style.display = 'none';
   form.appendChild(createInput(name, value));
   return form;
 }
@@ -125,8 +124,8 @@ function createForm(name, value) {
  * @returns {HTMLInputElement} The created input element.
  */
 function createInput(name, value) {
-  const input = document.createElement("input");
-  input.type = "hidden";
+  const input = document.createElement('input');
+  input.type = 'hidden';
   input.name = name;
   input.value = value;
   return input;

@@ -18,5 +18,15 @@ Step 3: Otherwise, simply display the form
 
 */
 ?>
+<form action="" method="get">
+<input type="text" name="search">
+<input type="submit">
+</form>
 
+<?php if(isset($_GET["search"])){
+$search = $_GET["search"];
+echo "you searched for $search"; 
+}
+?>
+ 
 <?php include 'includes/footer.php'; ?>

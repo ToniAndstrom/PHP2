@@ -15,7 +15,7 @@
 
     <?php
 
-		/*  Step 1: Use the Make a class called Dog
+    /*  Step 1: Use the Make a class called Dog
 
 		Step 2: Set some properties for Dog, Example, eye colors, nose, or fur color
 
@@ -29,18 +29,40 @@ Step 6: Call the method ShowAll
 
 		
 	*/
-  class Dog {
-  public $eyeColor;
-  public $nose;
-  public $furColor;
-  public function()
-  }
+    class Dog
+    {
+      public $eyeColor;
+      public $nose;
+      public $furColor;
+      function set_eyeColor($eyeColor)
+      {
+        $this->eyeColor = $eyeColor;
+      }
 
 
-		?>
+      function set_nose($nose)
+      {
+        $this->nose = $nose;
+      }
 
+      function set_furColor($furColor)
+      {
+        $this->furColor = $furColor;
+      }
 
+      function ShowAll()
+      {
+        echo "eye color:$this->eyeColor, nose: $this->nose, fur color: $this->furColor";
+      }
+    }
 
+    $pitbull = new Dog();
+    $pitbull->set_eyeColor("blue");
+    $pitbull->set_nose("black");
+    $pitbull->set_furColor("white");
+
+    $pitbull->ShowAll();
+    ?>
 
 
   </article>

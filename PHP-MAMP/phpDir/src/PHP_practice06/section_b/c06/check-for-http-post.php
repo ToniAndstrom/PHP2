@@ -19,4 +19,17 @@ Step 3: Otherwise, simply display the form
 */
 ?>
 
+
+
+<form action="" method="post">
+  <input type="text" name="search">
+  <input type="submit">
+</form>
+
+<?php 
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+  $search = $_POST["search"];
+  echo "you searched for $search" ;
+}
+?>
 <?php include 'includes/footer.php'; ?>

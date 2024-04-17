@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /* Write your PHP code here
 
 Step 1: Use and declare php strict types
@@ -29,10 +32,39 @@ To call a method, you can use
 - Method name with its argument in parantheses
 
 Step 9: In the final row of the table, previous step is repeated using different values. 
-
-
-
 */
+?>
+
+<?php
+class Account
+{
+  public $number;
+  public $type;
+  public $balance;
+
+  public function __construct(string $number, string  $type, float $balance = 0.00)
+  {
+    $this->number = $number;
+    $this->type = $type;
+    $this->balance = $balance;
+  }
+  public function deposit(float $amount): float
+  {
+    return $this->balance += $amount;
+  }
+  public function withdraw(float $amount): float
+  {
+    if ($amount <= $this->balance) {
+      $this->balance -= $amount;
+    }
+    return $this->balance;
+  }
+}
+
+$checking = new Account("2300083-03837", "Checking", 32.00);
+$savings = new Account("2300083-05968", "Savings", 756.00);
+
+
 
 ?>
 
@@ -41,19 +73,32 @@ Step 9: In the final row of the table, previous step is repeated using different
 <table>
   <tr>
     <th>Date</th>
+    <th><?= $checking->type; ?></th>
+    <th><?= $savings->type;?></th>
+    
 
   </tr>
   <tr>
     <td>23 June</td>
-
+    <td>$<?= $checking->balance;?></td>
+    <td>$<?= $savings->balance;?></td>
+    
+    
   </tr>
   <tr>
     <td>24 June</td>
+    <td>$<?= $checking->deposit(12)?></td>
+    <td>$<?= $savings->withdraw(100)?></td>
+    
 
   </tr>
   <tr>
     <td>25 June</td>
+    <td>$<?= $checking->withdraw(5) ?></td>
+    <td>$<?= $savings->deposit(300) ?></td>
+    
 
   </tr>
+ 
 </table>
 <?php include 'includes/footer.php'; ?>

@@ -1,0 +1,66 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+}
+.container{
+    min-width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    
+    
+}
+input{
+    margin: 0.5rem;
+    height: 2rem;
+    border-radius: 5px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;background-color: darkcyan;
+    min-width: 30rem;
+    margin-bottom: 7rem;
+    box-shadow: 20px 20px aqua;
+}
+h1{
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+#submit{
+    margin-bottom: 2rem;
+    background-color:hotpink;
+    height: 2rem;
+    width: 9rem;
+    border-radius: 5px;
+}
+.default-table{
+    background-color: black;
+    color: white;
+    max-width: 60%;
+    box-shadow: 20px 20px aqua;
+    margin-bottom: 3rem;
+    
+}
+table{
+background: black;
+}
+tr{
+    background-color: darkcyan;
+}
+button{
+    background-color: hotpink;
+    width: 4rem;
+    height: 2rem;
+}

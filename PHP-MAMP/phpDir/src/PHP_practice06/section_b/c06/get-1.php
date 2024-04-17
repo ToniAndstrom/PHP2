@@ -41,7 +41,8 @@ $address = $cities[$city];
 <?php include 'includes/header.php' ?>
 
 <?php foreach ($cities as $key => $value) { ?>
-  <a href="get-1.php?city=<?= $key ?>"> <?= $key ?></a>
+  <a href="get-1.php?city=<?= $key ?>"> <?= $key?></a>
+  
 <?php } ?>
-
+<p><?=$city . ": " . $address?></p>
 <?php include 'includes/footer.php' ?>

@@ -19,10 +19,26 @@ Step 4:  If the value in the city is a blank string it should display
 "Please select a city"
 
 */
+$cities = [
+    "Reykjavik" => "Iceland", "Auckland" => "New Zealand", "Melbourne" => "Australia", "Rome" => "Italy", "Toronto" => "Canada", "Hanoi" => "Vietnam", "Taipei" => "Taiwan"
+];
 
+$city = $_GET["city"] ?? "";
+$country = $cities[$city] ?? "";
 ?>
 
 
-//Write your code here
+
+<?php foreach ($cities as $key => $value) { ?>
+    <a href="get-2.php?city=<?= $key ?>">
+        <?= $key ?></a><br>
+<?php } ?>
+
+<?php if ($city !== "" && $country !== "") : ?>
+    <p><?= $city ?> is the capital of <?= $country ?></p>
+<?php else : ?>
+    <p>Please select a city</p>
+<?php endif; ?>
+
 
 <?php include 'includes/footer.php' ?>

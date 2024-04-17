@@ -29,7 +29,7 @@ function toggleEditMode(row, isEditing) {
     // Set onclick handlers for saving changes and cancelling edit
     deleteButton.setAttribute(
       "onclick",
-   //  "toggleEditMode(this.parentNode.parentNode , false)"
+     "toggleEditMode(this.parentNode.parentNode , false)"
     );
     editButton.setAttribute(
       "onclick",

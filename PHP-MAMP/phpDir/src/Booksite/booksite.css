@@ -9,6 +9,7 @@ body{
     justify-content: center;
     background-color: black;
     color: white;
+    flex-direction: column;
 }
 .container{
     min-width: 30%;
@@ -41,6 +42,7 @@ h1{
 }
 #submit{
     margin-bottom: 2rem;
+    margin-top: 1rem;
     background-color:hotpink;
     height: 2rem;
     width: 9rem;
@@ -73,7 +75,9 @@ select{
     width: 9rem;
     border-radius: 5px;
     text-align: center;
+    margin: 0.5rem;
 }
-td{
+td, th{
     text-align: center;
+    padding:1rem;
 }

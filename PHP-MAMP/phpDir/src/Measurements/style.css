@@ -26,17 +26,22 @@ form{
 }
 input{
     text-align: center;
-    width: 100%;
+    width: 12rem;
     height: 2rem;
     border-radius: 5px;
 }
 #submit{
     background-color: hotpink;
     text-align: center;
-    width: 100%;
+    width: 12rem;
     height: 2rem;
     border-radius: 5px;
     color:white;
+}
+select{
+    width: 12rem;
+    height: 2rem;
+    text-align: center;
 }
 #container{
     display:flex;

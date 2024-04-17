@@ -149,7 +149,7 @@ if (isset($_POST["mass_submit"])) {
 
     </div>
 
-
+    <footer> &copy;Toni Andström</footer>
 </body>
 
 </html>

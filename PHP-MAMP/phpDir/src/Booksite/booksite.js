@@ -21,7 +21,17 @@ function toggleEditMode(row, isEditing) {
     descriptionCell.innerHTML = `<input type="text" value="${descriptionCell.textContent}">`;
     authorCell.innerHTML = `<input type="text" value="${authorCell.textContent}">`;
     publishing_yearCell.innerHTML = `<input type="number" value="${publishing_yearCell.textContent}">`;
-    genreCell.innerHTML = `<input type="text" value="${genreCell.textContent}">`;
+    genreCell.innerHTML = ` <select value="${genreCell.select}">
+    <option value="Adventure">Adventure</option>
+    <option value="Classic Literature">Classic Literature</option>
+    <option value="Coming-of-age">Coming-of-age</option>
+    <option value="Fantasy">Fantasy</option>
+    <option value="Historical Fiction">Historical Fiction</option>
+    <option value="Horror">Horror</option>
+    <option value="Mystery">Mystery</option>
+    <option value="Romance">Romance</option>
+    <option value="Science Fiction">Science Fiction</option>
+  </select>`;
 
     // Change button labels to 'Save' and 'Cancel'
     editButton.textContent = "Save";
@@ -29,7 +39,7 @@ function toggleEditMode(row, isEditing) {
     // Set onclick handlers for saving changes and cancelling edit
     deleteButton.setAttribute(
       "onclick",
-     "toggleEditMode(this.parentNode.parentNode , false)"
+      "toggleEditMode(this.parentNode.parentNode , false)"
     );
     editButton.setAttribute(
       "onclick",

@@ -62,7 +62,13 @@ tr{
 }
 button{
     background-color: hotpink;
-    width: 8rem;
+    width: 6rem;
     height: 2rem;
     margin:5px;
+    border-radius: 5px;
+}
+select{
+    height: 2rem;
+    width: 9rem;
+    border-radius: 5px;
 }

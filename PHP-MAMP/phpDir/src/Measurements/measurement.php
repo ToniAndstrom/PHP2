@@ -101,6 +101,7 @@ if (isset($_POST["mass_submit"])) {
 </head>
 
 <body>
+    <h1 class="title">MEASUREMENT CONVERTOR</h1>
     <div id="container">
         <div>
             <form action="measurement.php" method="post" id="heat">
